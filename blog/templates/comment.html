@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block comment %}
+
+    <div class="col-sm" style="background-color: #948888; opacity: 0.5;">
+        <h1>Add Comment...</h1>
+    </div>
+    <div>
+        <form style="color:#fff; width:600px; margin: 50px; 0 25px 50px; opacity: 0.5;" method="post" enctype="multipart/form-data" >
+        {{ comment_form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-dark" >Comment</button>
+        </form>
+    </div>
+{% endblock %}

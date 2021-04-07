@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="card" style="width: 18rem; opacity: 0.9;" >
+        <img src="{% static 'img/lastchance.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text">You are about to delete this product, are you sure?</p>
+            <form style="color:#fff;" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a class="btn btn-outline-success" href="{% url 'detail' post.slug %}" role="button">Cancel</a>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+
+
+

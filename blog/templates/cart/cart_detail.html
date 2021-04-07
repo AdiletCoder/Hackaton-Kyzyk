@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for key,value in request.session.cart.items %}
+
+<div class="card" style="width: 18rem;">
+    <img src="{{value.image}}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{value.name}}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{ value.body | truncatewords:10 }} </li>
+    </ul>
+</div>
+{% endfor %}
+<a href="{% url 'cart_clear' %}"><button type="submit" class="btn btn-outline-dark">Empty favorites</button></a>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<form style="color:black; width:600px; margin: 50px; 0 25px 50px; opacity: 0.5;" method="post" enctype="multipart/form-data">
+    {{ post_form.as_p }}
+    {% csrf_token %}
+    <button type="submit" class="btn btn-secondary">Update</button>
+</form>
+{% endblock %}

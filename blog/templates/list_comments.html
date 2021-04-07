@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block comment %}
+{% for comment in list_comments %}
+<div class="card" style="opacity: 0.8; color: #9003fc">
+    <h4 class="card-header">{{ comment.user }}</h4>
+    <h5 class="card-header">{{ comment.post | truncatewords:4 }}</h5></a>
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+      <p class="card-text">{{ comment.body }}</p>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} List {% endblock %}
+{% block content %}
+    {% for post in posts %}
+        <div class="container" >
+
+            <div class="row">
+                <div class="col">
+                    <div class="card" style="width: 18rem; opacity: 0.8">
+                      <img src="{{ post.image.url }}" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ post.name }}</h5>
+                        <p class="card-text">{{ post.body | truncatewords:10 }}</p>
+                        <a href="{% url 'detail' post.slug %}" class="btn btn-primary">Read</a>
+                      </div>
+                    <h4>Comments...</h4>
+                        <br/>
+                    {% if not post.commentaries.all %}
+                        No comments yet...
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'add_comment' post.slug %}"> Add one</a>
+                        {% endif %}
+                    {% else %}
+                        {% if request.user.is_authenticated %}
+                        <a href="{% url 'add_comment' post.slug %}">Add comment</a>
+                        {% endif %}
+                        <br/>
+                        {% for comment in post.commentaries.all %}
+                            <strong>
+                                {{ comment.user }} -
+                                {{ comment.created }}
+                            </strong>
+                            <br/>
+                            {{ comment.body }}
+                            <br/><br/>
+                            <hr>
+                        {% endfor %}
+                    {% endif %}
+                        </div>
+                </div>
+            </div>
+
+        </div>
+    {% endfor %}
+
+       <nav aria-label="...">
+          <ul class="pagination pagination">
+              {% if page_obj.has_previous %}
+              <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+                {% endif %}
+            <li class="page-item active" aria-current="page">
+              <span class="page-link">{{ page_obj.number }}</span>
+            </li>
+                {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+{% endblock %}
