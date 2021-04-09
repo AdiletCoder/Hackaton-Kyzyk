@@ -20,7 +20,7 @@ class CreatePostForm(forms.ModelForm):
 class UpdatePostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = ('name', 'slug', 'body', 'image', 'tags',)
 
 
 class CreateCommentForm(forms.ModelForm):

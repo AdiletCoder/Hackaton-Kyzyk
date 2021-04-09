@@ -140,3 +140,13 @@ LOGIN_REDIRECT_URL = '/blog'
 LOGOUT_REDIRECT_URL = '/blog'
 
 
+# SMTP settings
+DEFAULT_FROM_EMAIL = 'admin@localhost'
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '121ae1ffeaafc9'
+EMAIL_HOST_PASSWORD = 'ec40d3090820b6'
+EMAIL_PORT = '2525'
+# Email Activation
+ACTIVATE_USERS_EMAIL = True
+
+BASE_HOST = 'localhost:8000'
