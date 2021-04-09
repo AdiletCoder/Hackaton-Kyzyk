@@ -104,7 +104,7 @@ class SearchListView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         q = self.request.GET.get('q')
-        queryset = queryset.filter(Q(title__icontains=q) | Q(body__icontains=q))
+        queryset = queryset.filter(Q(name__icontains=q) | Q(body__icontains=q))
         return queryset
 
 

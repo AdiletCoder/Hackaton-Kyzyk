@@ -8,8 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{% block title %} Kyzyk-life {% endblock %}</title>
      <style>
-         *{
+          *{
          margin: 0px;
+         }
+         .post-create{
+
+            p{
+                color: #fff
+            }
          }
 
         .footer {
@@ -22,7 +28,6 @@
         display: flex;
         flex-direction: row;
         height: 10vh;
-        width: 25vw;
         background-color: black;
         margin: 0 auto;
         opacity: 0.5;
@@ -46,45 +51,81 @@
           opacity: 0.7;
         }
 
+        .headerLink{
+        color: black;
+        text-decoration: none;
+        transition: 0.3s;
+        padding: 5px 10px;
+        border-radius: 5px;
+        }
+
+        .headerLink:hover{
+            color: #fff;
+            background: rgba(0,0,0, 0.55);
+        }
+
+        .header-top-links>li{
+       }
+
+        .header-top-links>li>:hover{
+            background: rgba(0,0,0, 0.55);
+        }
+
+        .header-top{
+        background: gray;
+
+        }
+        .header-top *{
+            color: #000;
+        }
+        .header-top *>a:hover{
+            color: #fff;
+        }
+
+
+    </style>
+
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg header-top">
+    <div style="width: 100%; margin: 0 30px;" class="d-flex justify-content-between">
         <a class="navbar-brand" href="{% url 'home' %}">Kyzyk-life</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              {% if not request.user.is_authenticated %}
-              <li><a class="nav-link active" aria-current="page" href="{% url 'signup' %}">Sign Up</a></li>
-              <li><a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a></li>
-              {% else %}
-                  <li><a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Log Out</a></li>
-                  <li><a class="nav-link active" aria-current="page" href="{% url 'create-post' %}">New Post</a></li>
-                  <li><a class="nav-link active" aria-current="page" href="{% url 'cart_detail' %}">Favorites</a></li>
-                  <li><span class="nav-link active" aria-current="page">Current user: {{ request.user.username }}</span></li>
-              {% endif %}
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 header-top-links">
+                {% if not request.user.is_authenticated %}
+                <li><a class="nav-link active" aria-current="page" href="{% url 'signup' %}">Sign Up</a></li>
+                <li><a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a></li>
+                {% else %}
+                <li><a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Log Out</a></li>
+                <li><a class="nav-link active" aria-current="page" href="{% url 'create-post' %}">New Post</a></li>
+                <li><a class="nav-link active" aria-current="page" href="{% url 'cart_detail' %}">Favorites</a></li>
+                <li><span class="nav-link active" aria-current="page">Current user: {{ request.user.username }}</span>
+                </li>
+                {% endif %}
 
-            </li>
-          </ul>
+                </li>
+            </ul>
 
-          <form class="d-flex"  method="get" action="{% url 'search' %}">
-            <input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+            <form class="d-flex" method="get" action="{% url 'search' %}">
+                <input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
-      </div>
-    </nav>
+    </div>
+</nav>
 
     {% block content %} {% endblock %}
     {% block comment %}{% endblock %}
 <footer>
   <div class="footerContainer">Authors: Azamat Sydykov and Adilet Nasirov <br>
-      <a href="https://www.facebook.com/profile.php?id=100008967369908" class="fa fa-facebook"></a>
-      <a href="https://www.instagram.com/_s_azamat2/?hl=ru" class="fa fa-instagram"></a>
-      <a href="https://www.linkedin.com/in/adilet-nasirov-8505a9136/" class="fa fa-linkedin"></a>
+      <a href="https://www.facebook.com/profile.php?id=100008967369908" target="_blank" class="fa fa-facebook"></a>
+      <a href="https://www.instagram.com/_s_azamat2/?hl=ru" target="_blank" class="fa fa-instagram"></a>
+      <a href="https://www.linkedin.com/in/adilet-nasirov-8505a9136/" target="_blank" class="fa fa-linkedin"></a>
   </div>
 </footer>
 </body>
